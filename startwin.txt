@@ -1,0 +1,30 @@
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3
+sudo apt-get install libevent-dev
+sudo apt install libsqlite3-dev
+sudo apt install libminiupnpc-dev libnatpmp-dev
+sudo apt-get install libzmq3-dev
+sudo apt install systemtap-sdt-dev
+sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools
+sudo apt install qtwayland5
+sudo apt-get install libqrencode-dev
+##########################
+sudo apt install libboost-all-dev
+sudo apt-get install -y libfmt-dev
+##########################
+########################## ldb_cxx #############################
+./contrib/install_db4.sh /home/dev/coin/mtc4e_linux
+#######################################################
+
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
+cd depends
+make HOST=x86_64-w64-mingw32 -j 4
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure BDB_LIBS="-L/home/dev/coin/mtc4e_linux/db4/lib -ldb_cxx-4.8" BDB_CFLAGS="-I/home/dev/coin/mtc4e_linux/db4/include"
+make -j 4
+make install DESTDIR=/home/dev/coin/exe/linux/mtc4e
+
+
+
+
