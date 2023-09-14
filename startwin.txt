@@ -11,10 +11,12 @@ sudo apt-get install libqrencode-dev
 sudo apt install libboost-all-dev
 sudo apt-get install -y libfmt-dev
 ##########################
+
+
+cd /home/dev/coin/mtc4e_linux
 ########################## ldb_cxx #############################
 ./contrib/install_db4.sh /home/dev/coin/mtc4e_linux
 #######################################################
-
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
 sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
 cd depends
